@@ -1,5 +1,6 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.jwt
+package com.taekyoung.oauth2.infra.security.jwt
 
+import com.taekyoung.oauth2.infra.security.MemberPrincipal
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -8,7 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.MemberPrincipal
 
 @Component
 class jwtAuthenticationFilter(

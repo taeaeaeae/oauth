@@ -1,4 +1,4 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.config
+package com.taekyoung.oauth2.infra.security.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

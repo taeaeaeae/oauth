@@ -1,5 +1,6 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.model
+package com.taekyoung.oauth2.member.service
 
+import com.taekyoung.oauth2.member.model.MemberRole
 import jakarta.persistence.*
 import java.time.ZoneId
 import java.time.ZonedDateTime

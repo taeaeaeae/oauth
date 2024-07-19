@@ -1,4 +1,4 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security
+package com.taekyoung.oauth2.infra.security
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority

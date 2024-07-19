@@ -1,4 +1,4 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.controller
+package com.taekyoung.oauth2.member.controller
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response.MemberResponse
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response.MemberSimplifiedResponse
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.service.MemberService
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.MemberPrincipal
+import com.taekyoung.oauth2.member.model.MemberService
+import com.taekyoung.oauth2.infra.security.MemberPrincipal
+import com.taekyoung.oauth2.member.dto.response.MemberResponse
+import com.taekyoung.oauth2.member.dto.response.MemberSimplifiedResponse
 import java.util.UUID
 
 @RestController

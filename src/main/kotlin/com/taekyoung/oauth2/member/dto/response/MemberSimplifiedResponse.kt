@@ -1,6 +1,6 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response
+package com.taekyoung.oauth2.member.dto.response
 
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.model.Member
+import com.taekyoung.oauth2.member.service.Member
 import java.util.UUID
 
 class MemberSimplifiedResponse(

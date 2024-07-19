@@ -1,8 +1,8 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.oauth2
+package com.taekyoung.oauth2.infra.oauth2
 
+import com.taekyoung.oauth2.member.dto.response.OAuth2Response
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.oauth2.core.user.OAuth2User
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response.OAuth2Response
 
 
 class CustomOAuth2User(

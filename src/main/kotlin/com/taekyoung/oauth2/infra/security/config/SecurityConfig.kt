@@ -1,17 +1,15 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.config
+package com.taekyoung.oauth2.infra.security.config
 
+import com.taekyoung.oauth2.infra.security.CustomAuthenticationEntryPoint
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.oauth2.OAuth2Service
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.CustomAuthenticationEntryPoint
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.jwt.jwtAuthenticationFilter
+import com.taekyoung.oauth2.infra.oauth2.OAuth2Service
+import com.taekyoung.oauth2.infra.security.jwt.jwtAuthenticationFilter
 
 
 @Configuration

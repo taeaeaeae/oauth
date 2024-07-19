@@ -1,4 +1,4 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.jwt
+package com.taekyoung.oauth2.infra.security.jwt
 
 
 import io.jsonwebtoken.Claims

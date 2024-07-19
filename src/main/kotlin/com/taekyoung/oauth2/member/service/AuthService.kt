@@ -1,21 +1,15 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.service
+package com.taekyoung.oauth2.member.service
 
+import com.taekyoung.oauth2.infra.security.jwt.JwtHelper
+import com.taekyoung.oauth2.member.dto.request.SigninRequest
+import com.taekyoung.oauth2.member.dto.request.SignupRequest
+import com.taekyoung.oauth2.member.dto.response.MemberResponse
+import com.taekyoung.oauth2.member.dto.response.SigninResponse
+import com.taekyoung.oauth2.member.model.MemberRole
 import jakarta.transaction.Transactional
-import org.springframework.dao.EmptyResultDataAccessException
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpMethod
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import org.springframework.web.client.RestTemplate
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response.MemberResponse
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.request.SigninRequest
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response.SigninResponse
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.request.SignupRequest
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.model.Member
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.model.MemberRole
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.repository.MemberRepository
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.infra.security.jwt.JwtHelper
+import com.taekyoung.oauth2.member.repository.MemberRepository
 
 @Service
 class AuthService(

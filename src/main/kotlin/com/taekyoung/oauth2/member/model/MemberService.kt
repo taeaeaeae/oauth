@@ -1,12 +1,11 @@
-package spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.service
+package com.taekyoung.oauth2.member.model
 
+import com.taekyoung.oauth2.member.dto.response.MemberResponse
+import com.taekyoung.oauth2.member.dto.response.MemberSimplifiedResponse
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response.MemberResponse
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.dto.response.MemberSimplifiedResponse
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.model.Member
-import spartacodingclub.nbcamp.kotlinspring.project.team4ighting.spring4gamer.domain.member.repository.MemberRepository
+import com.taekyoung.oauth2.member.repository.MemberRepository
 import java.util.UUID
 
 @Service
