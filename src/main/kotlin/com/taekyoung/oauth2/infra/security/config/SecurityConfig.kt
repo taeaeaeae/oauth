@@ -9,7 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import com.taekyoung.oauth2.infra.oauth2.OAuth2Service
+import com.taekyoung.oauth2.infra.security.jwt.JwtHelper
 import com.taekyoung.oauth2.infra.security.jwt.jwtAuthenticationFilter
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpMethod
 import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
@@ -21,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
     private val jwtAuthenticationFilter: jwtAuthenticationFilter,
     private val authenticationEntryPoint: AuthenticationEntryPoint,
-    private val customOAuth2UserService: OAuth2Service
+    private val customOAuth2UserService: OAuth2Service,
 ) {
 
     @Bean
@@ -35,7 +37,7 @@ class SecurityConfig(
                     .permitAll()
                 it.requestMatchers(
                     "/api/v1/auth/signin",
-                    "/api/v1/auth/**"
+                    "/api/v1/auth/signup"
                 )
                     .permitAll()
                     .anyRequest().authenticated()
@@ -44,10 +46,14 @@ class SecurityConfig(
                 it.sessionCreationPolicy(SessionCreationPolicy.NEVER) // #1
             }
             .oauth2Login {
-                it.loginProcessingUrl("/api/v1/auth/signin/google")
+                it.loginProcessingUrl("/google")
                 it.userInfoEndpoint { u -> u.userService(customOAuth2UserService) } // #2
                 it.defaultSuccessUrl("/api/v1/auth/signin/google") // #3
-                it.failureUrl("/fail")
+                it.failureHandler { request, response, exception ->
+                    response.status = HttpServletResponse.SC_UNAUTHORIZED
+                    response.contentType = "application/json"
+                    response.writer.write("{\"error\":\"${exception.message}\"}")
+                }
             }
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
             .exceptionHandling {

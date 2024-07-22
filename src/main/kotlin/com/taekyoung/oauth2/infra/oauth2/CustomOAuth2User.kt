@@ -20,6 +20,9 @@ class CustomOAuth2User(
 
         return collection
     }
+    fun email() : String {
+        return oAuth2Response.email
+    }
 
     override fun getName(): String {
         return oAuth2Response.name

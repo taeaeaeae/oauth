@@ -1,5 +1,6 @@
 package com.taekyoung.oauth2.member.service
 
+import com.taekyoung.oauth2.infra.oauth2.CustomOAuth2User
 import com.taekyoung.oauth2.infra.security.jwt.JwtHelper
 import com.taekyoung.oauth2.member.dto.request.SigninRequest
 import com.taekyoung.oauth2.member.dto.request.SignupRequest
@@ -41,13 +42,21 @@ class AuthService(
             jwtHelper.generateAccessToken(
                 subject = member.id.toString(),
                 email = member.email,
-                role = MemberRole.USER.name
+                role = member.role.name
             )
         )
     }
 
-//    fun googleSignin(accessToken: String): String {
-//
-//    }
+    fun googleSignin(email: String): SigninResponse {
+        val member = memberRepository.findByEmail(email) ?: throw IllegalArgumentException("가입되지 않은 회원입니다.")
+
+        return SigninResponse(
+            jwtHelper.generateAccessToken(
+                subject = member.id.toString(),
+                email = email,
+                role = member.role.name
+            )
+        )
+    }
 
 }

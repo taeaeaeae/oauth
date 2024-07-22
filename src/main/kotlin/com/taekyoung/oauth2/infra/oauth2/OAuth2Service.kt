@@ -7,11 +7,13 @@ import org.springframework.security.oauth2.core.user.OAuth2User
 import org.springframework.stereotype.Service
 import com.taekyoung.oauth2.member.repository.MemberRepository
 import com.taekyoung.oauth2.member.service.Member
+import org.springframework.security.crypto.password.PasswordEncoder
 
 
 @Service
 class OAuth2Service(
-    private val memberRepository: MemberRepository
+    private val memberRepository: MemberRepository,
+    private val passwordEncoder: PasswordEncoder,
 ) : DefaultOAuth2UserService() {
 
     override fun loadUser(userRequest: OAuth2UserRequest): OAuth2User {
@@ -19,20 +21,21 @@ class OAuth2Service(
         val oAuth2User = super.loadUser(userRequest)
         println(oAuth2User.attributes)
 
-        val registrationId = userRequest.clientRegistration.registrationId
-        val oAuth2Response = OAuth2Response(oAuth2User.attributes) //: OAuth2Response? = null
+        val oAuth2Response = OAuth2Response(oAuth2User.attributes)
 
         val username = oAuth2Response.provider + " " + oAuth2Response.providerId
-        val existData = memberRepository.existsByEmail(oAuth2Response.email)
+        val existData = memberRepository.findByEmail(oAuth2Response.email)
 
-        val role = "USER"
+        val role : String
 
-        val member = Member.from(oAuth2Response.email, "11111111", oAuth2Response.email)
-
-        memberRepository.save(member)
+        if(existData == null) {
+            val member = Member.from(oAuth2Response.email, passwordEncoder.encode(username), username)
+            memberRepository.save(member)
+            role = "ROLE_${member.role.name}"
+        } else {
+            role = "ROLE_${existData.role.name}"
+        }
 
         return CustomOAuth2User(oAuth2Response, role)
-
-        //추후 작성
     }
 }

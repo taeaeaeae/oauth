@@ -1,5 +1,6 @@
 package com.taekyoung.oauth2.member.controller
 
+import com.taekyoung.oauth2.infra.oauth2.CustomOAuth2User
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -16,12 +17,12 @@ import com.taekyoung.oauth2.member.dto.request.SigninRequest
 import com.taekyoung.oauth2.member.dto.request.SignupRequest
 import com.taekyoung.oauth2.member.dto.response.MemberResponse
 import com.taekyoung.oauth2.member.dto.response.SigninResponse
+import jakarta.servlet.http.HttpServletResponse
 
 @RestController
 @RequestMapping("/api/v1/auth")
 class AuthController(
-    val authService: AuthService,
-    val oauth2UserService: OAuth2Service,
+    val authService: AuthService
 ) {
 
     @PostMapping("/signin")
@@ -34,11 +35,9 @@ class AuthController(
         ResponseEntity.status(HttpStatus.CREATED).body(authService.signup(request))
 
     @GetMapping("/signin/google")
-    fun googleSignup(@AuthenticationPrincipal principal: OAuth2User?, model: Model): ResponseEntity<String> {
-        if (principal == null) {
-            return ResponseEntity.status(HttpStatus.OK).body("dksemfdjdha")
-        }
-        return ResponseEntity.status(HttpStatus.OK).body("로그인${model.getAttribute("email")}")
+    fun googleSignup(@AuthenticationPrincipal principal : CustomOAuth2User): ResponseEntity<SigninResponse> {
+
+        return ResponseEntity.status(HttpStatus.OK).body(authService.googleSignin(principal.email()))
     }
 
 }
